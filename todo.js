@@ -12,14 +12,15 @@ process.argv.forEach((val, index, array) =>  {
   switch (val){
     case "help":
     console.log(`================TO-DO (HELP)=================`);
-    console.log(`node todo.js list\nnode todo.js add <task_content>\nnode todo.js task <task_id>\nnode delete <task_id>\nnode complete <task_id>\nnode uncomplete <task_id>`);
+    console.log(`node todo.js list\nnode todo.js add <task_content>\nnode todo.js task <task_id>\nnode todo.js delete <task_id>\nnode todo.js complete <task_id>\nnode todo.js uncomplete <task_id>`);
     console.log(`=============================================`);
     break;
 
     case "list":
+      console.log(`================TO-DO (LIST)=================`);
     for (var i = 0; i < data.length; i++){
-      console.log(`-------------------------------------------`);
       console.log(`${i+1}. ${data[i].status} ${data[i].task}`);
+      console.log(`---------------------------------------------`);
     }
     break;
 
