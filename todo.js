@@ -11,11 +11,14 @@ process.argv.forEach((val, index, array) =>  {
 
   switch (val){
     case "help":
+    console.log(`================TO-DO (HELP)=================`);
     console.log(`node todo.js list\nnode todo.js add <task_content>\nnode todo.js task <task_id>\nnode delete <task_id>\nnode complete <task_id>\nnode uncomplete <task_id>`);
+    console.log(`=============================================`);
     break;
 
     case "list":
     for (var i = 0; i < data.length; i++){
+      console.log(`-------------------------------------------`);
       console.log(`${i+1}. ${data[i].status} ${data[i].task}`);
     }
     break;
@@ -31,13 +34,17 @@ process.argv.forEach((val, index, array) =>  {
       data.push({task:addTemp,status:"belum selesai"})
       //console.log(data);
       jsonfile.writeFileSync(file, data)
+      console.log(`================TO-DO (ADD)================`);
       console.log(`Memasukan ${addTemp} ke TODO list anda`);
+      console.log(`===========================================`);
     }
     break;
 
     case "task":
       if(array.length >3){
+        console.log(`================TO-DO (TASK)=================`);
         console.log(data[array[3]-1]);
+        console.log(`=============================================`);
       }
     break;
 
@@ -46,22 +53,28 @@ process.argv.forEach((val, index, array) =>  {
       data.splice(array[3]-1,1)
       jsonfile.writeFileSync(file, data)
     }
+    console.log(`================TO-DO (DELETE)=================`);
     console.log("data telah dihapus");
+    console.log(`===============================================`);
     break;
 
     case "complete":
     if(array.length > 3){
-      data[array[3]-1].status="[x]"
+      data[array[3]-1].status="[x]-(selesai)"
       jsonfile.writeFileSync(file, data)
+      console.log(`================TO-DO (COMPLETE)=================`);
       console.log(`task ke: ${array[3]} sudah selesai`);
+      console.log(`=================================================`);
     }
     break;
 
     case "uncomplete":
     if(array.length > 3){
-      data[array[3]-1].status="[ ]"
+      data[array[3]-1].status="[ ]-(belum selesai)"
       jsonfile.writeFileSync(file, data)
+      console.log(`================TO-DO (UNCOMPLETE)=================`);
       console.log(`task ke: ${array[3]} belum selesai`);
+      console.log(`===================================================`);
     }
     break;
 
