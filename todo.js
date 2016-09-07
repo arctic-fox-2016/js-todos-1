@@ -94,6 +94,6 @@ else if(process.argv[2] == "delete" ){
 }
 
 else {
-  console.log();
+  console.log("gagl");
 
 }
