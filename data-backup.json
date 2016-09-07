@@ -1,0 +1,4 @@
+[ {"task" : "Bake a delicious cake", "isChecked" : true},
+  {"task" : "Shutdown a computer", "isChecked" : false},
+  {"task" : "Change the world", "isChecked" : true} 
+]
