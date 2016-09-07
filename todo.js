@@ -19,7 +19,7 @@ var listTaskJSON = JSON.parse(fs.readFileSync('data.json'))
 let taskAll = []
 
 for (let i =0;i<listTaskJSON.length;i++){
-    taskAll.push(new Task({
+  taskAll.push(new Task({
     task:listTaskJSON[i].task,
     taskID:listTaskJSON[i].taskID
   }))
@@ -34,62 +34,63 @@ for (let i =0;i<listTaskJSON.length;i++){
 
 if(process.argv[2] == "list" ){
   console.log("===============List Aplikasi lo=============")
-     for (let i=0;i<taskAll.length;i++)
-     console.log(taskAll[i].task);
+  for (let i=0;i<taskAll.length;i++)
+  console.log(taskAll[i].task);
 }
 else if(process.argv[2] == "add" ){
-//  console.log("ADd Jalan");
+  //  console.log("ADd Jalan");
   console.log("===============Anda akan menambah data=============")
-     taskAll.push(new Task({
-       task:process.argv[3],
-       taskID:"T00"+(taskAll.length+1)
-     }))
+  taskAll.push(new Task({
+    task:process.argv[3],
+    taskID:"T00"+(taskAll.length+1)
+  }))
 
-    fs.writeFile("data.json", JSON.stringify(taskAll), function(err) {
+  fs.writeFile("data.json", JSON.stringify(taskAll), function(err) {
     if(err) {
-        return console.log(err);
+      return console.log(err);
     }
 
     console.log("The file was saved!");
-});
+  });
 
 }
 else if(process.argv[2] == "task" ){
-//  console.log("ADd Jalan");
+  //  console.log("ADd Jalan");
   console.log("===============Anda akan menambah data=============")
-     taskAll.push(new Task({
-       task:process.argv[3],
-       taskID:"T00"+taskAll.length+1
-     }))
+  taskAll.push(new Task({
+    task:process.argv[3],
+    taskID:"T00"+taskAll.length+1
+  }))
 }
 else if(process.argv[2] == "delete" ){
-//  console.log("ADd Jalan");
+  //  console.log("ADd Jalan");
   console.log("===============Anda akan mendelete data=============")
-    for (let i=0;i<taskAll.length;i++)
-    console.log(`Task ID : ${taskAll[i].taskID} ${taskAll[i].task}`   );
-    console.log(`Pilih ID yang anda ingin hapus`   );
-    let taskIDhapus = process.argv[3]
+  for (let i=0;i<taskAll.length;i++)
+  console.log(`Task ID : ${taskAll[i].taskID} ${taskAll[i].task}`   );
+  console.log(`Pilih ID yang anda ingin hapus`   );
+  let taskIDhapus = process.argv[3]
 
-    console.log(`Anda akan menghapus ${taskIDhapus}`);
-    for(let i = 0;i<taskAll.length;i++){
-      if(taskAll[i].taskID == taskIDhapus)
-        taskAll.splice(taskAll.indexOf(taskAll[i]),1)
-        //console.log(taskAll.indexOf(taskAll[i]))
-
+  console.log(`Anda akan menghapus ${taskIDhapus}`);
+  for(let i = 0;i<taskAll.length;i++){
+    if(taskAll[i].taskID == taskIDhapus)
+    taskAll.splice(taskAll.indexOf(taskAll[i]),1)
+    //console.log(taskAll.indexOf(taskAll[i]))
+  }
+  fs.writeFile("data.json", JSON.stringify(taskAll), function(err) {
+    if(err) {
+      return console.log(err);
     }
+    console.log("The file was deleted!");
+  });
+}
+else if(process.argv[2] == "data" ){
+  //  console.log("ADd Jalan");
+  let taskSearch = process.argv[3]
+  for(let i = 0;i<taskAll.length;i++){
+    if(taskAll[i].taskID == taskSearch)
+    console.log(`Nama ID : ${taskAll[i].taskID}, Jenis Task : ${taskAll[i].task}`);
 
-
-        fs.writeFile("data.json", JSON.stringify(taskAll), function(err) {
-        if(err) {
-            return console.log(err);
-        }
-        console.log("The file was deleted!");
-    });
-
-
-
-    //taskAll.splice(taskIDhapus,1)
-  //  myArray.splice(3,1)
+  }
 
 }
 
